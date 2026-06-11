@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shroomy Delights — School Outreach Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a2235;
+      --bg-row-hover: #1e293b;
+      --bg-row-alt: #141c2e;
+      --accent-green: #34d399;
+      --accent-green-dim: #065f46;
+      --accent-emerald: #10b981;
+      --accent-teal: #14b8a6;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #a78bfa;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: #1e293b;
+      --border-accent: #334155;
+      --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.5);
+      --shadow-glow: 0 0 40px rgba(52,211,153,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ═══════ HERO HEADER ═══════ */
+    .hero {
+      position: relative;
+      padding: 48px 40px 32px;
+      background: linear-gradient(135deg, #0a0e1a 0%, #111827 50%, #0d1525 100%);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(52,211,153,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 30%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .brand-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-teal));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 20px rgba(52,211,153,0.2);
+    }
+
+    .brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent-green);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 600px;
+    }
+
+    .hero-sub a {
+      color: var(--accent-green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero-sub a:hover { text-decoration: underline; }
+
+    /* ═══════ STATS BAR ═══════ */
+    .stats-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .stat-chip:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: var(--border-accent);
+    }
+
+    .stat-value {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .stat-chip .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ═══════ TOOLBAR ═══════ */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,14,26,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+    }
+
+    .toolbar-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 42px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-box input:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(52,211,153,0.1);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    select, .btn {
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    select:hover, .btn:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-row-hover);
+    }
+
+    select:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(52,211,153,0.1);
+    }
+
+    .btn-export {
+      background: linear-gradient(135deg, var(--accent-green-dim), #064e3b);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-export:hover {
+      background: linear-gradient(135deg, #065f46, #047857);
+      box-shadow: 0 0 16px rgba(52,211,153,0.15);
+    }
+
+    .result-count {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .result-count strong {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    /* ═══════ TABLE ═══════ */
+    .table-wrap {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 2px;
+      font-size: 13.5px;
+    }
+
+    thead th {
+      position: sticky;
+      top: 56px;
+      z-index: 50;
+      background: var(--bg-secondary);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11.5px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    thead th:hover {
+      color: var(--accent-green);
+    }
+
+    thead th .sort-icon {
+      display: inline-block;
+      margin-left: 4px;
+      opacity: 0.3;
+      font-size: 10px;
+      transition: opacity 0.2s;
+    }
+
+    thead th.sorted .sort-icon {
+      opacity: 1;
+      color: var(--accent-green);
+    }
+
+    thead th:first-child { border-radius: 8px 0 0 0; padding-left: 20px; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+
+    tbody tr {
+      transition: background 0.15s;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--bg-row-alt);
+    }
+
+    tbody tr:hover {
+      background: var(--bg-row-hover) !important;
+    }
+
+    tbody td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(30,41,59,0.5);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    tbody td:first-child {
+      padding-left: 20px;
+    }
+
+    .col-sr {
+      width: 50px;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .col-name {
+      min-width: 240px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .col-city {
+      min-width: 110px;
+      white-space: nowrap;
+    }
+
+    .city-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(52,211,153,0.08);
+      color: var(--accent-green);
+      border: 1px solid rgba(52,211,153,0.15);
+    }
+
+    .city-badge.delhi {
+      background: rgba(167,139,250,0.08);
+      color: var(--accent-purple);
+      border-color: rgba(167,139,250,0.15);
+    }
+
+    .city-badge.noida {
+      background: rgba(6,182,212,0.08);
+      color: var(--accent-cyan);
+      border-color: rgba(6,182,212,0.15);
+    }
+
+    .col-address {
+      min-width: 260px;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .col-phone {
+      min-width: 160px;
+      white-space: nowrap;
+    }
+
+    .phone-link, .web-link, .maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 13px;
+    }
+
+    .phone-link {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.1);
+    }
+
+    .phone-link:hover {
+      background: rgba(52,211,153,0.12);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .web-link {
+      color: var(--accent-cyan);
+      background: rgba(6,182,212,0.06);
+      border: 1px solid rgba(6,182,212,0.1);
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .web-link:hover {
+      background: rgba(6,182,212,0.12);
+      border-color: var(--accent-cyan);
+    }
+
+    .maps-link {
+      color: var(--accent-amber);
+      font-size: 12px;
+      padding: 3px 8px;
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.1);
+    }
+
+    .maps-link:hover {
+      background: rgba(251,191,36,0.12);
+      border-color: var(--accent-amber);
+    }
+
+    .col-rating {
+      min-width: 80px;
+      white-space: nowrap;
+    }
+
+    .rating-display {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stars {
+      color: var(--accent-amber);
+      font-size: 13px;
+    }
+
+    .rating-num {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .review-count {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .col-category {
+      min-width: 120px;
+      font-size: 12px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-size: 11.5px;
+    }
+
+    .col-actions {
+      min-width: 220px;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid;
+      background: transparent;
+      transition: all 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .action-whatsapp {
+      color: #25D366;
+      border-color: rgba(37,211,102,0.2);
+    }
+
+    .action-whatsapp:hover {
+      background: rgba(37,211,102,0.1);
+      border-color: #25D366;
+    }
+
+    /* ═══════ STATUS TOGGLE ═══════ */
+    .status-toggle {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid;
+      background: transparent;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      user-select: none;
+    }
+
+    .status-toggle.not-approached {
+      color: var(--accent-rose);
+      border-color: rgba(251,113,133,0.25);
+      background: rgba(251,113,133,0.06);
+    }
+
+    .status-toggle.not-approached:hover {
+      background: rgba(251,113,133,0.14);
+      border-color: var(--accent-rose);
+      box-shadow: 0 0 12px rgba(251,113,133,0.1);
+    }
+
+    .status-toggle.approached {
+      color: #34d399;
+      border-color: rgba(52,211,153,0.35);
+      background: rgba(52,211,153,0.1);
+    }
+
+    .status-toggle.approached:hover {
+      background: rgba(52,211,153,0.18);
+      border-color: #34d399;
+      box-shadow: 0 0 12px rgba(52,211,153,0.12);
+    }
+
+    tbody tr.row-approached {
+      opacity: 0.6;
+    }
+
+    tbody tr.row-approached:hover {
+      opacity: 1;
+    }
+
+    .no-data {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    /* ═══════ EMPTY STATE ═══════ */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .empty-state h3 {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    /* ═══════ SCROLLBAR ═══════ */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 768px) {
+      .hero { padding: 28px 16px 20px; }
+      .hero h1 { font-size: 22px; }
+      .toolbar { padding: 10px 16px; }
+      .table-wrap { padding: 0 8px 40px; }
+      .stats-bar { gap: 4px; }
+      .stat-chip { padding: 6px 10px; font-size: 12px; }
+      thead th { font-size: 10px; padding: 10px 10px; }
+      tbody td { padding: 10px 10px; font-size: 12px; }
+    }
+
+    /* ═══════ ANIMATION ═══════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    tbody tr {
+      animation: fadeInUp 0.3s ease forwards;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-green);
+      border-radius: 10px;
+      color: var(--accent-green);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="brand-row">
+        <div class="brand-icon">🍄</div>
+        <span class="brand-name">Shroomy Delights Agrotech</span>
+      </div>
+      <h1>School Outreach Directory</h1>
+      <p class="hero-sub">
+        International schools in Delhi & Haryana — cold outreach list for farm visits at
+        <a href="https://shroomydelightsagrotech.com/" target="_blank">shroomydelightsagrotech.com</a>
+      </p>
+      <div class="stats-bar" id="statsBar">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search schools by name, city, address, phone...">
+      </div>
+      <div class="filter-group">
+        <select id="regionFilter">
+          <option value="">All Regions</option>
+        </select>
+        <select id="contactFilter">
+          <option value="">All Contacts</option>
+          <option value="phone">Has Phone</option>
+          <option value="website">Has Website</option>
+          <option value="both">Has Phone + Website</option>
+          <option value="none">No Contact Info</option>
+        </select>
+        <select id="ratingFilter">
+          <option value="">All Ratings</option>
+          <option value="4.5">4.5+ ★</option>
+          <option value="4">4+ ★</option>
+          <option value="3">3+ ★</option>
+          <option value="rated">Has Rating</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">All Status</option>
+          <option value="approached">✅ Approached</option>
+          <option value="not-approached">🔴 Not Approached</option>
+        </select>
+        <button class="btn btn-export" onclick="exportCSV()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-sr" data-sort="index"># <span class="sort-icon">▼</span></th>
+          <th data-sort="name">School Name <span class="sort-icon">▼</span></th>
+          <th data-sort="city">City / Region <span class="sort-icon">▼</span></th>
+          <th data-sort="address">Address <span class="sort-icon">▼</span></th>
+          <th data-sort="phone">Phone <span class="sort-icon">▼</span></th>
+          <th data-sort="website">Website <span class="sort-icon">▼</span></th>
+          <th data-sort="rating">Rating <span class="sort-icon">▼</span></th>
+          <th data-sort="category">Type <span class="sort-icon">▼</span></th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+      </svg>
+      <h3>No schools match your filters</h3>
+      <p>Try adjusting your search or filter criteria</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+<script>
+// ═══════ DATA ═══════
+const DATA = [{"name":"ORCHIDS The International School, NBC Sonipat | CBSE | Affiliation No. 530544","address":"Delhi Road, nearby ICICI Bank, Braham Colony, New Braham Colony, Bhagat Pura, Sonipat, Haryana 131001, India","phone":"+91 99994 31999","website":"https://www.orchidsinternationalschool.com/sonipat-branches/new-braham-colony","email":"","rating":4.5,"reviews":179,"category":"Educational institution","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=ORCHIDS%20The%20International%20School%2C%20NBC%20Sonipat%20%7C%20CBSE%20%7C%20Affiliation%20No.%20530544&query_place_id=ChIJPVMRIBSwDTkRO9mNVO_01MU"},{"name":"Gateway international school","address":"Gateway Institutions Campus Rd, Sector 11, Sonipat, Haryana 131001, India","phone":"+91 98123 02331","website":"https://gateway.edu.in/gis/","email":"","rating":"","reviews":"","category":"General education school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Gateway%20international%20school&query_place_id=ChIJn2FvQ5-xDTkRAh8i7E569Lc"},{"name":"Shreejee International School - Best CBSE School in Sonipat, Haryana","address":"11 Moorti, Murthal Rd, near Nidaan Blood Bank, Sonipat, Haryana 131001, India","phone":"+91 88140 89000","website":"https://www.sjissonipat.in/","email":"","rating":"","reviews":"","category":"High school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Shreejee%20International%20School%20-%20Best%20CBSE%20School%20in%20Sonipat%2C%20Haryana&query_place_id=ChIJIVBkcWSxDTkRZofMGloyft0"},{"name":"Orchids The International School - Sonipat","address":"Meerut Road, Bahalgarh, Khewra, Sonipat, Haryana 131001, India","phone":"+91 99994 31999","website":"https://www.orchidsinternationalschool.com/sonipat-branches/sonipat-campus","email":"","rating":4.6,"reviews":140,"category":"Educational institution","city":"Khewra, Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Orchids%20The%20International%20School%20-%20Sonipat&query_place_id=ChIJ6T0DcZCtDTkRl9AcIHr5at8"},{"name":"K.R. Mangalam World School Sonipat | Best CBSE School in Sonipat","address":"TDI City, Sector 59, N.H. 1, Kundli, Sonipat, Haryana 131030, India","phone":"+91 99909 02126","website":"https://krmangalamsonipat.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=K.R.%20Mangalam%20World%20School%20Sonipat%20%7C%20Best%20CBSE%20School%20in%20Sonipat&query_place_id=ChIJdTgq-3CsDTkRpvDrIhlHGwM"},{"name":"G.D. Goenka International School | Boarding School in Delhi NCR","address":"Kundli, Sonipat, Palri Kalan, Haryana 131023, India","phone":"+91 99103 44700","website":"https://gdgoenkasonepat.com/","email":"","rating":"","reviews":"","category":"Boarding school","city":"Sonipat, Palri Kalan","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=G.D.%20Goenka%20International%20School%20%7C%20Boarding%20School%20in%20Delhi%20NCR&query_place_id=ChIJceqXRIStDTkRXaVNFLM8a9Q"},{"name":"South Point International School","address":"Ratangarh-Bagru, Gohana Road, Sonipat-131022, Haryana, Haryana 131001, India","phone":"+91 98120 20033","website":"http://southpointinternationalschool.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=South%20Point%20International%20School&query_place_id=ChIJzXrF8567DTkRNCsrumkGpOE"},{"name":"New Heights International School","address":"Mehlana Rd, near Sector-23, Mayur Vihar, Sector 23, Sonipat, Haryana 131001, India","phone":"+91 93069 37586","website":"http://nhinternationalschool.org/","email":"","rating":"","reviews":"","category":"General education school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=New%20Heights%20International%20School&query_place_id=ChIJw0u8aJa6DTkRK5M_ZGalMvA"},{"name":"Stanford International School","address":"SH 11, Palri Khurd, Haryana 131023, India","phone":"+91 88148 99946","website":"","email":"","rating":"","reviews":"","category":"International school","city":"Palri Khurd","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Stanford%20International%20School&query_place_id=ChIJhXsjeIGtDTkRDU5s0aFoqDQ"},{"name":"Prayaas International School - Best International School |Best CBSE School in Ganaur","address":"Railway Road, Grand Trunk Rd, Ganaur, Sonipat, Haryana 131101, India","phone":"+91 81156 47000","website":"http://www.prayaasinternationalschool.com/","email":"","rating":"","reviews":"","category":"International school","city":"Ganaur, Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Prayaas%20International%20School%20-%20Best%20International%20School%20%7CBest%20CBSE%20School%20in%20Ganaur&query_place_id=ChIJ362EFiDIDTkR6z0gwZlNIWE"},{"name":"International Modern School","address":"X2XF+9WJ, Adarsh Nagar, Sonipat, Haryana 131001, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=International%20Modern%20School&query_place_id=ChIJZ5qpym2wDTkR97-kyR328Gg"},{"name":"Light House International School","address":"5V36+MC9, Sonipat, Haryana 131102, India","phone":"+91 94169 67930","website":"http://www.lhisbajana.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Light%20House%20International%20School&query_place_id=ChIJTQyN8WXADTkRg_StW_1D0jw"},{"name":"Ishwar International School","address":"State Highway 11, Sonipat Bypass Rd, Gohana, Haryana 131301, India","phone":"","website":"http://www.iisgohana.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Gohana","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ishwar%20International%20School&query_place_id=ChIJ7eXU8qWUDTkRVjAKxIZdhZ4"},{"name":"Sunrise International School - Best School in Kundli, Top School in Kundli, Best school in Sonipat, Best CBSE School","address":"Tdi City Kundli, near KMP Expressway, Block- L, Sector 59, Sonipat, Haryana 131023, India","phone":"+91 98731 57967","website":"http://www.sunriseinternationalschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Sunrise%20International%20School%20-%20Best%20School%20in%20Kundli%2C%20Top%20School%20in%20Kundli%2C%20Best%20school%20in%20Sonipat%2C%20Best%20CBSE%20School&query_place_id=ChIJZ5c5GXGsDTkRtinNppDUQ0g"},{"name":"Apollo International School","address":"National Highway 1, GT Karnal Road, Barhi, Sonipat, Haryana 131101, India","phone":"+91 130 247 4604","website":"http://www.aischool.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Apollo%20International%20School&query_place_id=ChIJ7Wk_pgO3DTkRq2KrGiYPVFQ"},{"name":"Brights Mind International School (Sonipat)","address":"laxman Colony, Gali Number 2, near Railway , Under By Pass, Sector 25, Sonipat, Haryana 131001, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"Educational institution","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Brights%20Mind%20International%20School%20(Sonipat)&query_place_id=ChIJB8lEbTuvDTkRU4T3AIt2c_A"},{"name":"TDI INTERNATIONAL SCHOOL","address":"Sonipat, Haryana 131023, India","phone":"+91 82959 71739","website":"","email":"","rating":"","reviews":"","category":"Higher secondary school","city":"Sonipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=TDI%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJg3Q0zXKsDTkRyGeVzCxZn6Y"},{"name":"Solitaire International School - Top & Best CBSE School in Panchkula","address":"Sector 20, Panchkula, Haryana 134117, India","phone":"+91 62396 52230","website":"http://www.solitaireinternationalschool.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Solitaire%20International%20School%20-%20Top%20%26%20Best%20CBSE%20School%20in%20Panchkula&query_place_id=ChIJ57G_75OUDzkRoRz_J7ha0WQ"},{"name":"Chitkara International School - Panchkula","address":"1716, Sector 28, Panchkula Extension, Panchkula, Haryana 134108, India","phone":"+91 72910 90935","website":"http://www.chitkaraschool.in/panchkula","email":"","rating":"","reviews":"","category":"CBSE school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Chitkara%20International%20School%20-%20Panchkula&query_place_id=ChIJVdHwX3yVDzkRVUwYHYu4VmQ"},{"name":"Dbels (Dass & Brown Experiential Learning School)","address":"HS1, Sector 6, Mansa Devi Complex, Phase - I, Sector 13, Panchkula, Haryana 134114, India","phone":"+91 88725 85000","website":"https://dassandbrownschool.com/","email":"","rating":4.8,"reviews":45,"category":"K-12 school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Dbels%20(Dass%20%26%20Brown%20Experiential%20Learning%20School)&query_place_id=ChIJv2yxqzuTDzkRSkCHjAOudT0"},{"name":"Aravali International School Panchkula","address":"Urban Complex, DLF Valley, Sector 3 Kalka, Pinjore, Bhogpur, Haryana 134105, India","phone":"+91 79861 23040","website":"https://www.aravali.edu.in/aravali-international-school-panchkula","email":"","rating":"","reviews":"","category":"CBSE school","city":"Pinjore, Bhogpur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Aravali%20International%20School%20Panchkula&query_place_id=ChIJI3pArWmTDzkRzbz2KWvERMc"},{"name":"Sky World School","address":"Sky World School Site, Street Number 1, Sector 21, Budanpur, Panchkula, Haryana 134112, India","phone":"+91 93160 04000","website":"http://www.theskyschool.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Sky%20World%20School&query_place_id=ChIJdeuV1YCUDzkR9MLPBp47ekY"},{"name":"Brilliance World School Panchkula","address":"near, market, Railla, Sector 12, Panchkula, Haryana 134112, India","phone":"+91 76963 66700","website":"http://www.brillianceworldschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Brilliance%20World%20School%20Panchkula&query_place_id=ChIJdY0TAJ2UDzkRJHvCelVHNT0"},{"name":"Saupin's School","address":"behind Prachin Shiv Mandir, Sector 9, Panchkula, Haryana 134113, India","phone":"+91 98555 12798","website":"http://www.saupinsschoolpkl.com/","email":"","rating":"","reviews":"","category":"ICSE school","city":"Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Saupin's%20School&query_place_id=ChIJwQfDeUSTDzkRnAMgqKO0nmI"},{"name":"The Cambridge international preschool","address":"Sector 20, 21, dividing road, near chinar heights, towards, Peer Muchalla, Panchkula, Punjab 160104, India","phone":"+91 91155 54747","website":"","email":"","rating":5,"reviews":4,"category":"Preschool","city":"Panchkula","state":"Punjab","url":"https://www.google.com/maps/search/?api=1&query=The%20Cambridge%20international%20preschool&query_place_id=ChIJYbzKAb2VDzkRJUzY6pZB5S4"},{"name":"Rising Stars Global School","address":"Lane A 1, DLF The Vly Rd, near Amravati Enclave, Panchkula, Bhogpur, Haryana 134105, India","phone":"+91 79019 20002","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panchkula, Bhogpur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Rising%20Stars%20Global%20School&query_place_id=ChIJgTtH6neTDzkRRq3TshVrjnw"},{"name":"Global International School","address":"chawk, Chintapurni-Dharamshala Road, Shiv Nagar, Chandigarh, Panchkula, Haryana 134109, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Chandigarh, Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Global%20International%20School&query_place_id=ChIJVVVVFUGTDzkR_2Z7Ozx04e0"},{"name":"Roots Country School, Panchkula","address":"Urban Complex, DLF The Valley Sector 3 Kalka, Pinjore, Panchkula, Haryana 134105, India","phone":"+91 62309 55515","website":"http://panchkula.rootscountryschool.com/","email":"","rating":"","reviews":"","category":"Boarding school","city":"Pinjore, Panchkula","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Roots%20Country%20School%2C%20Panchkula&query_place_id=ChIJMTsvTCuRDzkRouoDa9EzIeo"},{"name":"Gayatri School","address":"NH 7, landmark TBRL Village, Mankya, Ramgarh, ward 19, Panchkula, Manka, Haryana 134118, India","phone":"+91 93069 52853","website":"https://gayatriglobalschool.com/","email":"","rating":4.8,"reviews":96,"category":"School center","city":"Panchkula, Manka","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Gayatri%20School&query_place_id=ChIJuadE002UDzkRxch6CVKgSOE"},{"name":"MM International School","address":"MM University Complex, Sadopur, Ambala, Haryana 134007, India","phone":"+91 74969 30013","website":"http://www.mmisambala.org/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Ambala, Lohgarh","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=MM%20International%20School&query_place_id=ChIJL7em6TXGDzkRAO85acK4en8"},{"name":"Amazon International School","address":"Amazon International School, Sector 10, Ambala, Haryana 134003, India","phone":"+91 98117 11316","website":"","email":"","rating":4.1,"reviews":27,"category":"Educational institution","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Amazon%20International%20School&query_place_id=ChIJiQRVFALJDzkRbH8Ip04SY7Y"},{"name":"Father's International School","address":"CV45+5FJ, Ambala-Dehradun-Haridwar Rd, Haryana 134007, India","phone":"+91 98029 01317","website":"http://www.sarupduagroupofschools.org/photo-gallery%20-%20FIS.php","email":"","rating":"","reviews":"","category":"General education school","city":"","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Father's%20International%20School&query_place_id=ChIJb0cKM4-3DzkRhebCb6qhR08"},{"name":"SONA INTERNATIONAL SCHOOL","address":"A- Block, Sec-23 20, Street A4, sector-23, Vatika City Central, Ambala, Haryana 134003, India","phone":"","website":"http://www.sonainternationalschool.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=SONA%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJkaYvAvrJDzkRBOa-N1KcKFQ"},{"name":"Olive Green International School","address":"Plot no. 41, to, panhokhra road, near Defense colony, Kallerheri, Ambala Cantt, Haryana 133010, India","phone":"+91 97288 42825","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Ambala Cantt","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Olive%20Green%20International%20School&query_place_id=ChIJw5lq8Wq3DzkR-n_NB1SzSqE"},{"name":"Elnino International Preschool-playway-Ambala || Best Kindergarten / Playway / Preschool in Ambala","address":"18-C, Raja Park Rd, Krishna Nagar, Preet Nagar, Ambala Cantt, Haryana 133001, India","phone":"+91 94160 61871","website":"http://www.elninopreschool.com/","email":"","rating":4.9,"reviews":130,"category":"Preschool","city":"Ambala Cantt","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Elnino%20International%20Preschool-playway-Ambala%20%7C%7C%20Best%20Kindergarten%20%2F%20Playway%20%2F%20Preschool%20in%20Ambala&query_place_id=ChIJzSDUYmS2DzkRH1DuQF7Fk14"},{"name":"E-max International school","address":"Village Gola, Tehsil Mullana, Ambala, Haryana 133203, India","phone":"+91 85728 15000","website":"http://emax.edu.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=E-max%20International%20school&query_place_id=ChIJa0yFF96tDzkR9Nsa3lSqbuI"},{"name":"Maya International School.","address":"Raipur Rani, Naraingarh Rd, Bhurewala, Dandrawal, Ambala, Haryana 134007, India","phone":"+91 94666 17646","website":"http://mayainternationalschool.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Maya%20International%20School.&query_place_id=ChIJIXyL927IDzkRcc4su55T5Yk"},{"name":"Sahib International School","address":"Anaj Mandi, Old, to, Kalpi Link Road, Saha, Haryana 133104, India","phone":"+91 82950 53047","website":"","email":"","rating":5,"reviews":1,"category":"CBSE school","city":"Saha","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Sahib%20International%20School&query_place_id=ChIJVQSXhg6zDzkRs9dHkFQXHp4"},{"name":"Mavericks International School","address":"Tangail, Road, Mullana, Haryana 133203, India","phone":"+91 83960 86277","website":"http://mavericksinschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Mullana","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Mavericks%20International%20School&query_place_id=ChIJnVYFWO6tDzkRFeM-2iiECJ0"},{"name":"Delhi Public School, Ambala","address":"Ambala Chandigarh Road, opposite Omaxe Green Flats, 134003, Ambala, Haryana 134007, India","phone":"+91 97283 00510","website":"http://dpsambala.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Delhi%20Public%20School%2C%20Ambala&query_place_id=ChIJk_3w9zTGDzkR2js7gJzHeuA"},{"name":"MM International School, Mullana","address":"MM Education Complex, Mullana, Haryana 133207, India","phone":"+91 1731 275 400","website":"http://www.mmismullana.org/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Mullana, Patti Bagheru","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=MM%20International%20School%2C%20Mullana&query_place_id=ChIJUWGcqTOtDzkRNEZxcgi17ds"},{"name":"Vijay Vallabh Jain International School","address":"Vijay Vallabh Jain International School, near Adesh Medical Hospital -136134, Mohri, Ambala, Haryana 136134, India","phone":"","website":"","email":"","rating":5,"reviews":18,"category":"School center","city":"Mohri, Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Vijay%20Vallabh%20Jain%20International%20School&query_place_id=ChIJn2mqRBG1DzkR5UygJ6a8KC4"},{"name":"Aeromind International School","address":"First Floor, Plot no. 102-A, Khojkipur Road, Prabhu Prem Puram, Ambala Cantt, Haryana 133006, India","phone":"+91 96642 16593","website":"https://aeromindinternational.com/aeromind/","email":"","rating":"","reviews":"","category":"Preschool","city":"Ambala Cantt","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Aeromind%20International%20School&query_place_id=ChIJu7BxstS3DzkRU6CK5t17KR0"},{"name":"American Kidz International Montessori Education play school and Day Care in Ambala City","address":"87-B, Model Town, Ambala, Haryana 134003, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"Preschool","city":"Ambala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=American%20Kidz%20International%20Montessori%20Education%20play%20school%20and%20Day%20Care%20in%20Ambala%20City&query_place_id=ChIJbU7rGzzJDzkRsvAVcGhWnRs"},{"name":"RPS International School","address":"near Liberty Chowk, Sector 29, Alpha International City, Karnal, Haryana 132116, India","phone":"+91 83980 00306","website":"http://www.rpskarnal.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=RPS%20International%20School&query_place_id=ChIJHcf4GcFvDjkR5QVyF7Ft5UM"},{"name":"OPS International School","address":"Kunjpura Rd, Karnal, Haryana 132023, India","phone":"+91 98969 36009","website":"https://opsschoolkarnal.in/","email":"","rating":"","reviews":"","category":"International school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=OPS%20International%20School&query_place_id=ChIJHQUm8URlDjkRzgHhYgrnhC8"},{"name":"Delhi Heritage International School","address":"GP4J+JVV, Karnal, Haryana 132046, India","phone":"+91 89016 88229","website":"","email":"","rating":"","reviews":"","category":"Private educational institution","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Delhi%20Heritage%20International%20School&query_place_id=ChIJdYshKO8JDjkR9FP2VKnNvz0"},{"name":"JK INTERNATIONAL SCHOOL","address":"24/11 Km MileStone Indri Road, Near Police Post Vill. Ramba, Karnal, Haryana 132116, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=JK%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJoTMjdBdwDjkRAhwkJNklPUY"},{"name":"Apollo International School, Karnal","address":"village Dadupur, Nilokheri, Haryana 132116, India","phone":"+91 99915 27772","website":"http://www.aischool.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Nilokheri, Dadupur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Apollo%20International%20School%2C%20Karnal&query_place_id=ChIJP45loCFvDjkR2dq3umLPIes"},{"name":"Doon International School","address":"Chirao Mor,Main Kaithal Road,State Highway 8, Karnal, Haryana 132024, India","phone":"+91 93541 21470","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Doon%20International%20School&query_place_id=ChIJi9jODwFyDjkROGRw2hqk25E"},{"name":"MM International School","address":"Indri Road Karnal-Indri, Yamunanagar Highway, Ramba, Haryana 132116, India","phone":"+91 80599 30015","website":"http://www.mmiskarnal.edu.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Ramba","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=MM%20International%20School&query_place_id=ChIJq6qq2stoDjkRYwU5BgP7iLk"},{"name":"V P International School","address":"MWPR+Q8F, Kaithal - Pundri - Karnal Rd, opposite police line, Mustfabad, Karnal, Haryana 132036, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=V%20P%20International%20School&query_place_id=ChIJrwPCUOdxDjkRoJNe3rJTFsw"},{"name":"JD International School","address":"JD International School, Sector 13, Karnal, Haryana 132001, India","phone":"+91 94683 75261","website":"http://jdinternationalschoolkrnl.com/","email":"","rating":"","reviews":"","category":"High school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=JD%20International%20School&query_place_id=ChIJfzi4xqlxDjkReAzF-7cb2lM"},{"name":"Cambridge International international Public School","address":"Hansi Rd, opp. Bhagwaria Gas Godown, Old Ramesh Nagar, Ramesh Nagar, Karnal, Haryana 132001, India","phone":"","website":"http://www.apskarnal.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Cambridge%20International%20international%20Public%20School&query_place_id=ChIJLdbA8S9wDjkRGdx6xAeDsQ0"},{"name":"Shemrock International Play School","address":"no. 7, Huda site, opp. Happy Family Hospital, Urban Estate, Sector 6, Karnal, Phusgarh Part, Haryana 132001, India","phone":"+91 81999 93320","website":"https://www.shemrock.com/shemrock-international-school-playschool-in-karnal/","email":"","rating":4.4,"reviews":18,"category":"Educational institution","city":"Karnal, Phusgarh Part","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Shemrock%20International%20Play%20School&query_place_id=ChIJL43HP3VwDjkRfn0iDs8wBLE"},{"name":"C.S International School","address":"PWF5+34C, Kachhwa Main Rd, Karnal, Haryana 132116, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=C.S%20International%20School&query_place_id=ChIJjwhTv9ptDjkRJjGAL4lgfp8"},{"name":"THE LONDON INTERNATIONAL BEAUTY SCHOOL","address":"Sco19-B, Mugal Canal Rd, near Hotel 8th Planet, Old Char Chaman, Dyal Singh Colony, Karnal, Haryana 132001, India","phone":"+91 99968 69222","website":"https://thelondoninternationalbeautyschool.com/","email":"","rating":4.9,"reviews":61,"category":"Educational institution","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=THE%20LONDON%20INTERNATIONAL%20BEAUTY%20SCHOOL&query_place_id=ChIJk-sUQR1xDjkRz-_eVLpq7j8"},{"name":"MAX INTERNATIONAL SCHOOL","address":"2 kms safidon road, danauli village, Assandh, Haryana 132039, India","phone":"+91 90502 94300","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Assandh Ruralpart","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=MAX%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJ74oz3K8HDjkRmgmfqVZ9M7o"},{"name":"Victor International School","address":"VPO Barsat, Tehsil Gharaunda, Karnal, Haryana 132114, India","phone":"+91 99960 93999","website":"http://www.victorschools.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Karnal","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Victor%20International%20School&query_place_id=ChIJ86PQnFPXDTkRNHQzMGfwDWs"},{"name":"ORCHIDS The International School - CBSE School in Rohtak","address":"Chamaria Road, NH-71A, Gohana Rd, Rohtak, Haryana 124303, India","phone":"+91 99994 31999","website":"https://www.orchidsinternationalschool.com/rohtak-branches/gohana-road-campus","email":"","rating":4.9,"reviews":187,"category":"CBSE school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=ORCHIDS%20The%20International%20School%20-%20CBSE%20School%20in%20Rohtak&query_place_id=ChIJm0y7a-SFDTkRTTEo40w2OLE"},{"name":"International Bharti School","address":"5th Mile Stone, Gohana Rd, Rohtak, Haryana 124001, India","phone":"+91 70823 52880","website":"http://www.ibsrohtak.com/","email":"","rating":"","reviews":"","category":"International school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=International%20Bharti%20School&query_place_id=ChIJNcQuj3iFDTkRqT7gqhvkwpU"},{"name":"G.D. Goenka International School","address":"8th Mile Stone, Sonipat Rd, Rohtak, Haryana 124401, India","phone":"+91 82229 11805","website":"https://gdgoenkarohtak.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Rohtak, Rurki","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=G.D.%20Goenka%20International%20School&query_place_id=ChIJqSLrozuFDTkRfKoG6T7uT94"},{"name":"TLS International School-Best CBSE Senior Secondary School in heart of Rohtak city at 0 KM","address":"Tilak Nagar, Sector 3 (P), Rohtak, Haryana 124001, India","phone":"+91 1262 244 000","website":"http://www.tlsedu.in/","email":"","rating":4.3,"reviews":163,"category":"CBSE school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=TLS%20International%20School-Best%20CBSE%20Senior%20Secondary%20School%20in%20heart%20of%20Rohtak%20city%20at%200%20KM&query_place_id=ChIJVVVVVQWFDTkRS9DqEfZwos0"},{"name":"VIDYA SHREE INTERNATIONAL SCHOOL","address":"6th, Mile stone, Rohtak - Sonipat Rd, Bhalaut, Haryana 124401, India","phone":"+91 88149 58958","website":"http://www.vidyashreeinternational.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Bhalaut","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=VIDYA%20SHREE%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJ65gNChCFDTkRXtu1lvDwpNg"},{"name":"G D Goenka International School (Junior Wing)","address":"Near, Opposite Devi Lal Park, Delhi Rd, Rohtak, Haryana 124001, India","phone":"+91 82229 11802","website":"https://gdgoenkarohtak.com/","email":"","rating":"","reviews":"","category":"Boarding school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=G%20D%20Goenka%20International%20School%20(Junior%20Wing)&query_place_id=ChIJpdzOhSeFDTkRI22bt0OxEnI"},{"name":"Agastya International School","address":"Best School in Rohtak, Plot number, PS-3, Sector 35, Block A, Suncity Township-I, Rohtak, Haryana 124001, India","phone":"+91 96673 39048","website":"http://www.aisrohtak.in/","email":"","rating":"","reviews":"","category":"ICSE school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Agastya%20International%20School&query_place_id=ChIJa_VG8EyFDTkRFfhSBl2MqPA"},{"name":"Little International School , Rohtak","address":"Ekta Colony, Rohtak, Haryana 124001, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Little%20International%20School%20%2C%20Rohtak&query_place_id=ChIJMVB6r6WFDTkRaO7NBOjf-XI"},{"name":"RPS INTERNATIONAL SCHOOL ROHTAK","address":"Sonipat Rd, Rohtak, Haryana 124401, India","phone":"+91 90539 18800","website":"http://www.rpsrohtak.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=RPS%20INTERNATIONAL%20SCHOOL%20ROHTAK&query_place_id=ChIJhQXwqdObDTkRlFg94G8r8lY"},{"name":"✅𝗝𝗣 𝗜𝗻𝘁𝗲𝗿𝗻𝗮𝘁𝗶𝗼𝗻𝗮𝗹 𝗦𝗰𝗵𝗼𝗼𝗹 - Primary/Secondary/Senior secondary school/Best CBSE school/Best school in Rohtak","address":"Sector 36, Suncity Township-I, Rohtak, Haryana 124001, India","phone":"+91 98963 46876","website":"http://www.jprtk.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=%E2%9C%85%F0%9D%97%9D%F0%9D%97%A3%20%F0%9D%97%9C%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%B2%F0%9D%97%BF%F0%9D%97%BB%F0%9D%97%AE%F0%9D%98%81%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB%F0%9D%97%AE%F0%9D%97%B9%20%F0%9D%97%A6%F0%9D%97%B0%F0%9D%97%B5%F0%9D%97%BC%F0%9D%97%BC%F0%9D%97%B9%20-%20Primary%2FSecondary%2FSenior%20secondary%20school%2FBest%20CBSE%20school%2FBest%20school%20in%20Rohtak&query_place_id=ChIJfXgBe9yFDTkRF4zygZg4bSw"},{"name":"Times International school","address":"12 Miles stone, Sonipat Road, Kisranti, Haryana 124401, India","phone":"+91 98130 30386","website":"http://tisrohtak.com/","email":"","rating":"","reviews":"","category":"International school","city":"Kisranti","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Times%20International%20school&query_place_id=ChIJ_____yyZDTkR9XBB4JYPctw"},{"name":"TAKSHILA INTERNATIONAL SCHOOL","address":"RHRP+R3F, Rohtak, Haryana 124021, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=TAKSHILA%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJ5VrkIHqEDTkReBPPrysBSVg"},{"name":"Ved Model - The International School Kalanaur ,Rohtak","address":"Nigana Road, MDR 122, Kalanaur, Haryana 124113, India","phone":"+91 1258 222 648","website":"","email":"","rating":"","reviews":"","category":"International school","city":"Kalanaur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ved%20Model%20-%20The%20International%20School%20Kalanaur%20%2CRohtak&query_place_id=ChIJX_mqsi15EjkRNWh4qU6Xv0k"},{"name":"The Star Global School","address":"2021, Sonipat Rd, Tilak Nagar, Ram Gopal Colony, Rohtak, Haryana 124001, India","phone":"+91 70156 39659","website":"https://thestarglobalschool.com/","email":"","rating":3.8,"reviews":4,"category":"Educational institution","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=The%20Star%20Global%20School&query_place_id=ChIJAydeJSWFDTkRPfAt2j2Z6rg"},{"name":"Sangwan International School || No. 1 School in Rohtak || Best School in Rohtak || Best Residential School in Haryana","address":"Near Toll Pllaza, Gohana Rd, Haryana 124001, India","phone":"+91 70820 01082","website":"http://www.sangwanschoolrohtak.com/","email":"","rating":"","reviews":"","category":"General education school","city":"","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Sangwan%20International%20School%20%7C%7C%20No.%201%20School%20in%20Rohtak%20%7C%7C%20Best%20School%20in%20Rohtak%20%7C%7C%20Best%20Residential%20School%20in%20Haryana&query_place_id=ChIJrQgOxjuPDTkR1jGd4T6uQyc"},{"name":"Kaizen International School","address":"VHJV+442, Kamla Nagar, Rohtak, Haryana 124001, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Kaizen%20International%20School&query_place_id=ChIJWyDBBVWEDTkRxrj5kr9X3-U"},{"name":"Ok International School","address":"Omaxe City, Sector-28, Rohtak, Haryana 124021, India","phone":"+91 72061 10000","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Rohtak","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ok%20International%20School&query_place_id=ChIJ3cWW98mFDTkR-IVZkX7KQ_U"},{"name":"The British School, New Delhi","address":"Dr Jose P Rizal Marg, Chanakyapuri, New Delhi, Delhi 110021, India","phone":"+91 11 4066 4166","website":"http://www.british-school.org/","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=The%20British%20School%2C%20New%20Delhi&query_place_id=ChIJ60KZh0IdDTkRiZff2NWjYFg"},{"name":"American Embassy School","address":"Chandragupta Marg, Chanakyapuri, New Delhi, Delhi 110021, India","phone":"+91 11 2688 8854","website":"https://www.aes.ac.in/?utm_source=google&utm_medium=organic&utm_campaign=gmb","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=American%20Embassy%20School&query_place_id=ChIJc6Q7xEIdDTkR_KRQeyF_Gcc"},{"name":"Bluebells School International","address":"H65Q+8CV, Lala Lajpat Rai Rd, opposite Lady Shri Ram College For Women–Delhi University (LSR–DU), Kailash Colony, Block C, Zamrudpur, Greater Kailash, New Delhi, Delhi 110065, India","phone":"+91 11 4729 7766","website":"http://www.bluebellsinternational.com/","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Bluebells%20School%20International&query_place_id=ChIJe9T0ZKzjDDkRXk0E2oHzn74"},{"name":"Tagore International School","address":"Paschimi Marg, Block C, Vasant Vihar, New Delhi, Delhi 110057, India","phone":"+91 11 2614 2270","website":"http://www.tagoreint.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Tagore%20International%20School&query_place_id=ChIJfwMxS6YdDTkRXNRAWUsR6J8"},{"name":"German School New Delhi","address":"EP16/17 Chandragupta Marg, Chanakyapuri Entry via connecting road at Primus Hospital, to, Dr Jose P Rizal Marg, New Delhi, Delhi 110021, India","phone":"+91 11 2611 2193","website":"http://www.dsnd.de/","email":"","rating":"","reviews":"","category":"Bilingual school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=German%20School%20New%20Delhi&query_place_id=ChIJnXKdxl0dDTkRFXzvVDokG_Y"},{"name":"Delhi International School Edge","address":"Sector 18, Sector 18A, Dwarka, New Delhi, Delhi, 110078, India","phone":"+91 95999 64446","website":"https://www.disedge.ac.in/","email":"","rating":4.6,"reviews":523,"category":"Educational institution","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Delhi%20International%20School%20Edge&query_place_id=ChIJC7x5mLgaDTkRQIkYeFR5wgg"},{"name":"Manava Bharati India International School","address":"Panchsheel Park South, Panchsheel Park, New Delhi, Delhi 110017, India","phone":"+91 11 2601 4515","website":"http://mbiis.in/","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Manava%20Bharati%20India%20International%20School&query_place_id=ChIJ_79-94rhDDkR7GjY_brCvCQ"},{"name":"Amity International School","address":"M Block, No:44, Saket Rd, Block N, Saket, New Delhi, Delhi 110017, India","phone":"+91 11 4073 8400","website":"https://amityschools.in/saket/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Amity%20International%20School&query_place_id=ChIJv4tymYP8DDkRlV2mT90eaIQ"},{"name":"Apeejay School International | South Delhi | An IB Continuum School","address":"Apeejay School Road, Sheikh Sarai Road, Phase 1, Panchsheel Park, New Delhi, Delhi 110017, India","phone":"+91 11 2601 6935","website":"http://intl.apeejay.edu/","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Apeejay%20School%20International%20%7C%20South%20Delhi%20%7C%20An%20IB%20Continuum%20School&query_place_id=ChIJh3J-myHiDDkRk3OyA24UVTQ"},{"name":"Tagore International School","address":"TAGORE INTERNATIONAL SCHOOL, Block E, East of Kailash, New Delhi, Delhi 110065, India","phone":"+91 11 4508 7929","website":"https://eok.tagoreint.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Tagore%20International%20School&query_place_id=ChIJfygDFrXjDDkRtnxqnbBo7Eo"},{"name":"Modern International School","address":"Sector-19, Dwarka, New Delhi, Delhi 110075, India","phone":"+91 85279 49856","website":"http://www.moderninternationalschool.com/","email":"","rating":"","reviews":"","category":"International school","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Modern%20International%20School&query_place_id=ChIJ8SB2KeIaDTkRehBLHTsUIPs"},{"name":"B.S. International School, Dalip Vihar, New Delhi","address":"Dalip Vihar, Plot No. 26, Nilothi Ext Rd, Chander Vihar, Nilothi, New Delhi, Delhi, 110041, India","phone":"+91 97183 11000","website":"http://www.bsinternationalschooldelhi.com/","email":"","rating":4.4,"reviews":121,"category":"Educational institution","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=B.S.%20International%20School%2C%20Dalip%20Vihar%2C%20New%20Delhi&query_place_id=ChIJa7Z3ywAFDTkRhJb0o0tu2Og"},{"name":"Icon International School","address":"Sector 6 Dwarka, Dwarka, New Delhi, Delhi, 110075, India","phone":"+91 70654 99991","website":"","email":"","rating":"","reviews":"","category":"Primary school","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Icon%20International%20School&query_place_id=ChIJ79YVNiUbDTkR-o1aR52BOtk"},{"name":"Dps International School","address":"37, Mehrauli - Badarpur Rd, Dr Ambedkar Nagar, Rocky Area, Sector 6, Pushp Vihar, New Delhi, Delhi 110062, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Dps%20International%20School&query_place_id=ChIJ1VJUkZnhDDkR-7oix2U_sOw"},{"name":"Delhi International School Sector 23 Dwarka","address":"Service Rd, Sector 23, Dwarka, Delhi, 110077, India","phone":"+91 11 4564 9457","website":"http://www.dis.ac.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Delhi%20International%20School%20Sector%2023%20Dwarka&query_place_id=ChIJPf1nOAAbDTkRDHxoPukzhIc"},{"name":"PP International School","address":"Metro Pillar Number 333, Lala Jagat Narayan Marg, Block LD, Dakshini Pitampura, Pitampura, New Delhi, Delhi, 110034, India","phone":"+91 11 4516 1066","website":"https://www.ppi.school/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=PP%20International%20School&query_place_id=ChIJF60yP80DDTkR6KBylI2TOO4"},{"name":"The Mother's International School","address":"junior wing, Sri Aurobindo Marg, Vijay Mandal Enclave, Kalu Sarai, New Delhi, Delhi 110016, India","phone":"+91 11 2696 4140","website":"http://themis.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=The%20Mother's%20International%20School&query_place_id=ChIJcWQJ6QXiDDkRXpzIYKgZVTk"},{"name":"Metro Delhi International School","address":"Plot No 20-21, Pari Chowk, near Kailash Hospital, Knowledge Park I, Greater Noida, Uttar Pradesh 201310, India","phone":"+91 88601 50178","website":"http://www.mdis.net/","email":"","rating":"","reviews":"","category":"International school","city":"Greater Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Metro%20Delhi%20International%20School&query_place_id=ChIJQcYM7wXjDDkRebDcvMFbQWQ"},{"name":"Euro International School","address":"K Block, Block K, Mayfield Garden, Sector 51, Gurugram, Samaspur, Haryana 122018, India","phone":"+91 93111 03821","website":"https://www.euroschoolsec51ggn.com/","email":"","rating":4.8,"reviews":587,"category":"Educational institution","city":"Gurugram, Samaspur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Euro%20International%20School&query_place_id=ChIJ65_zyuwjDTkR8jUYBA8oUdE"},{"name":"Scottish High International School","address":"Block G, Sushant Lok 2, Sector 57, Gurugram, Haryana 122011, India","phone":"+91 124 411 2781","website":"https://www.scottishigh.com/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Scottish%20High%20International%20School&query_place_id=ChIJVVVVVQoiDTkR-ApDk-GJ3l0"},{"name":"ODM International School Gurugram - Best Schools in Gurgaon","address":"Block R Uppal Southend St, Badshahpur Sohna Rd, Sector 49, Gurugram, Haryana 122018, India","phone":"+91 1800 120 2316","website":"https://admission-gurugram.odminternationalschool.org/?utm_source=google&utm_medium=search_cpc_gmb","email":"","rating":"","reviews":"","category":"CBSE school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=ODM%20International%20School%20Gurugram%20-%20Best%20Schools%20in%20Gurgaon&query_place_id=ChIJb7tZ1YkjDTkRmkDzzaLnDLs"},{"name":"Pathways School Gurgaon - International Baccalaureate (IB) School In Delhi NCR","address":"Faridabad - Gurgaon Rd, Baliawas, Gurugram, Bandhwari, Haryana 122101, India","phone":"+91 124 487 2000","website":"https://www.pathwaysgurgaon.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram, Bandhwari","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Pathways%20School%20Gurgaon%20-%20International%20Baccalaureate%20(IB)%20School%20In%20Delhi%20NCR&query_place_id=ChIJh7JZydohDTkRp8ixXV9Q95I"},{"name":"Lancers International School - IB School in Gurgaon","address":"DLF Phase 5, Sector 53, Gurugram, Haryana 122001, India","phone":"+91 124 417 1900","website":"https://www.lis.ac.in/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Lancers%20International%20School%20-%20IB%20School%20in%20Gurgaon&query_place_id=ChIJoWpCzrYYDTkR8RnVQ-5P_3M"},{"name":"ORCHIDS The International School - ICSE School in Sector 56 Gurgaon - Affiliation No. HA013","address":"Plot no.-4, Devinder Vihar, Sector 56, Gurugram, Haryana 122011, India","phone":"+91 99994 31999","website":"https://www.orchidsinternationalschool.com/gurgaon-branches/sector-56","email":"","rating":4.8,"reviews":134,"category":"Educational institution","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=ORCHIDS%20The%20International%20School%20-%20ICSE%20School%20in%20Sector%2056%20Gurgaon%20-%20Affiliation%20No.%20HA013&query_place_id=ChIJXbEG9awjDTkRbNf_1QfBKeY"},{"name":"Lotus Valley International School, Gurgaon","address":"Nirvana Rd, behind North Close, Block M, South City II, Sector 50, Gurugram, Haryana 122018, India","phone":"","website":"http://www.lotusvalleygurgaon.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Lotus%20Valley%20International%20School%2C%20Gurgaon&query_place_id=ChIJ9QiNMHAiDTkRuKwl9OqMsUo"},{"name":"Vedanya International School - Best CBSE School in Gurgaon","address":"Central Park Resorts Rd, Central Park II, Sector 48, Gurugram, Haryana 122018, India","phone":"+91 74286 97080","website":"http://vedanya.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Vedanya%20International%20School%20-%20Best%20CBSE%20School%20in%20Gurgaon&query_place_id=ChIJH5Y9gnUYDTkRZ7CAfGiAjBU"},{"name":"Billabong High International School Sector 57, Gurgaon - Cambridge School","address":"Golf Course Ext Rd, Sushant Lok III, Sector 57, Gurugram, Haryana 122018, India","phone":"+91 77381 44942","website":"https://www.billabonghighschool.com/igcse-school-gurugram/?utm_source=google&utm_medium=organic&utm_id=gmb_listing","email":"","rating":5,"reviews":10,"category":"Educational institution","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Billabong%20High%20International%20School%20Sector%2057%2C%20Gurgaon%20-%20Cambridge%20School&query_place_id=ChIJX8fwXw8jDTkRVSy3PDGMVNg"},{"name":"Euro International School, Sec-10","address":"Krishna Nagar, Sector 10, Gurugram, Haryana 122001, India","phone":"+91 96438 91317","website":"http://euroschoolsec10ggn.com/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Euro%20International%20School%2C%20Sec-10&query_place_id=ChIJC0t9boYXDTkRMvPg9sS9OAI"},{"name":"GEMS Millennium School.","address":"Block C 2, Palam Vihar, Gurugram, Haryana 122017, India","phone":"+91 124 463 6900","website":"https://gemsmillenniumschoolgurugram.in/","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=GEMS%20Millennium%20School.&query_place_id=ChIJEx2A2uYZDTkRacXtz3EnxME"},{"name":"Shree Swaminarayan Gurukul International School Gurugram","address":"Green Valley, Gurgaon - Faridabad Road, near Gwal Pahari, DLF Farm, Baliawas, Gurgoan, New Delhi, Haryana 122101, India","phone":"+91 88844 48660","website":"https://gurukul.org/gurugram-delhi-ncr//?utm_source=gmb&utm_medium=google&utm_campaign=search","email":"","rating":5,"reviews":21,"category":"Educational institution","city":"Gurgoan, New Delhi","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Shree%20Swaminarayan%20Gurukul%20International%20School%20Gurugram&query_place_id=ChIJN9wr89MhDTkRQiq4XIeAwXk"},{"name":"Pathways World School","address":"Aravali Retreat, Off Gurgaon-Sohna, Road, Gurugram, Haryana 122102, India","phone":"+91 124 451 3000","website":"https://www.pws.edu.in/","email":"","rating":"","reviews":"","category":"Boarding school","city":"Gurugram, Gangani","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Pathways%20World%20School&query_place_id=ChIJ1W7eYbMkDTkRCLMKPspnw_I"},{"name":"Meenakshi World School","address":"opp. Yadav Hospital, Housing Board Colony, Sector 10A, Gurugram, Haryana 122001, India","phone":"+91 88005 37222","website":"","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Meenakshi%20World%20School&query_place_id=ChIJneLAkIwXDTkR5eUZLlVuE4s"},{"name":"Ryan International School - Sec 31, Gurugram (Gurgaon) - CBSE","address":"Plot no. - 2, Sector 31, Gurugram, Haryana 122001, India","phone":"+91 124 426 9299","website":"https://www.ryangroup.org/ryaninternational/cbse/gurgaon/ryan-international-school-sector-31?utm_source=Google&utm_medium=GMB&utm_campaign=Ryan+Group+Gurgaon+Sector+31","email":"","rating":"","reviews":"","category":"International school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ryan%20International%20School%20-%20Sec%2031%2C%20Gurugram%20(Gurgaon)%20-%20CBSE&query_place_id=ChIJZ8fsAsQZDTkRmypS3rbFMG4"},{"name":"Euro International School : Best School | Best Public school | Best Nursery School | Sohna Road Gurgaon","address":"Vipul World - A Block, 4945, Tikri, Sector 48, Gurugram, Haryana 122018, India","phone":"+91 74969 71518","website":"","email":"","rating":"","reviews":"","category":"Combined primary and secondary school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Euro%20International%20School%20%3A%20Best%20School%20%7C%20Best%20Public%20school%20%7C%20Best%20Nursery%20School%20%7C%20Sohna%20Road%20Gurgaon&query_place_id=ChIJAQAAsJ8iDTkRaDY-h6Pr73I"},{"name":"ORCHIDS The International School, South City Gurgaon | CBSE | Affiliation No. 532159","address":"Block G, South City I, Sector 41, Gurugram, Haryana 122003, India","phone":"+91 99994 31999","website":"https://www.orchidsinternationalschool.com/gurgaon-branches/south-city","email":"","rating":4.4,"reviews":64,"category":"Educational institution","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=ORCHIDS%20The%20International%20School%2C%20South%20City%20Gurgaon%20%7C%20CBSE%20%7C%20Affiliation%20No.%20532159&query_place_id=ChIJoeMwqJkZDTkRdB_jScY_34A"},{"name":"Euro International School, Sector 37D, Gurugram","address":"BPTP Towers, Sector 37D, Gurugram, Haryana 122006, India","phone":"+91 96438 90317","website":"https://www.euroschoolsec37dggn.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Gurugram","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Euro%20International%20School%2C%20Sector%2037D%2C%20Gurugram&query_place_id=ChIJf_s6Gq8XDTkR72X9f6M3ECE"},{"name":"Gurgaon World School","address":"CX5Q+R8M, Sector 36A, Gurugram, Mohammadpur Jharsa, Haryana 122004, India","phone":"+91 86072 02777","website":"https://www.gurgaonworldschool.org/","email":"","rating":"","reviews":"","category":"General education school","city":"Gurugram, Mohammadpur Jharsa","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Gurgaon%20World%20School&query_place_id=ChIJIa6Rm109DTkRv-AXQzxW4Z8"},{"name":"Satya School, Gurugram","address":"Block E, South City II, Sector 49, Gurugram, Fatehpur, Haryana 122018, India","phone":"+91 95607 93697","website":"https://satyaschool.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Gurugram, Fatehpur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Satya%20School%2C%20Gurugram&query_place_id=ChIJxX0qGt0jDTkRfUg0rICL8qc"},{"name":"S.D. International School - Best School in Panipat","address":"Sector - 6, Urban Estate, Panipat, Panipat Taraf Ansar, Haryana 132103, India","phone":"+91 70822 00340","website":"https://sdischool.co.in/","email":"","rating":4.8,"reviews":15,"category":"K-12 school","city":"Panipat, Panipat Taraf Ansar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=S.D.%20International%20School%20-%20Best%20School%20in%20Panipat&query_place_id=ChIJTeJ6a8fbDTkRBWZCVHq7r8g"},{"name":"Prayaag International School | Best School in Panipat | Top CBSE School Panipat","address":"NH 44, opp. New, near Diwana Railway Station Road, Police Line, Panipat, Haryana 132108, India","phone":"+91 180 256 5555","website":"http://prayaaginternationalschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Prayaag%20International%20School%20%7C%20Best%20School%20in%20Panipat%20%7C%20Top%20CBSE%20School%20Panipat&query_place_id=ChIJv3nJgUfFDTkRY3ch-XqJN9M"},{"name":"Panipat International School","address":"7RVH+8CM, Vpo Karad, Tehsil Israna, Panipat, Haryana 132107, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Panipat%20International%20School&query_place_id=ChIJx2nwth_oDTkR5P6FwmBtRrU"},{"name":"Best School GDR The Gurukul International School","address":"Simla Molana Road, Adjacent to ELDECO Society, Opposite babarpur mandi , NH-1, Panipat, Haryana 132104, India","phone":"+91 98120 47065","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat, Simla Molana","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Best%20School%20GDR%20The%20Gurukul%20International%20School&query_place_id=ChIJVT8J9KTZDTkRF_qYDKVXn3Y"},{"name":"AMAZON INTERNATIONAL SCHOOL","address":"Amazon International School, Near Navakot Gurudwara, Huda Rd, Sector-12, Panipat, Haryana 132103, India","phone":"+91 92850 00068","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=AMAZON%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJXwGR5mbaDTkRJodf_uyuw80"},{"name":"Holy Angels International School","address":"CX6F+VP2, Barsat Rd, Vikas Nagar, HUDA, Panipat, Haryana 132103, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Holy%20Angels%20International%20School&query_place_id=ChIJh21J3C_aDTkR3wNn-kcRZSQ"},{"name":"Jay International School","address":"Israna, Jay International School, Jondhan Kalan, NCR, Panipat, Haryana 132107, India","phone":"+91 90531 00557","website":"https://jayinternationalschool.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Jay%20International%20School&query_place_id=ChIJKSBvdFDDDTkRMEzmE_3zR5Q"},{"name":"Buddha International School","address":"32, Assandh - Panipat Rd, opp. St Merry School, Dutta Colony, Panipat, Haryana 132105, India","phone":"+91 90504 05326","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Buddha%20International%20School&query_place_id=ChIJ6w8T1YXbDTkR3pJgp0QinPI"},{"name":"The Excel International school","address":"Rohtak - Panipat Rd, near Dahar Toll Plaza, Dohar, Panipat, Dahar, Haryana 132145, India","phone":"+91 81999 01902","website":"https://theexcelinternationalschool.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat, Dahar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=The%20Excel%20International%20school&query_place_id=ChIJkfVC_0vFDTkRXOeYo-vn9HU"},{"name":"HARE KRISHNA INTERNATIONAL SCHOOL BAPOLI","address":"ADHMI, ROAD, Bapoli Rd, Panipat, Haryana 132104, India","phone":"+91 70981 50000","website":"http://www.hkisbapoli.com/","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=HARE%20KRISHNA%20INTERNATIONAL%20SCHOOL%20BAPOLI&query_place_id=ChIJuTxbK3vRDTkR2Da_cpcy1mM"},{"name":"THE GOLDEN ERA INTERNATIONAL SCHOOL","address":"VPO BARANA, ON, Babail Road, Barana, Haryana 132104, India","phone":"+91 97290 00203","website":"","email":"","rating":4.3,"reviews":15,"category":"Education center","city":"Barana","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=THE%20GOLDEN%20ERA%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJVXhzl2fXDTkRTQc7mut5a_0"},{"name":"GVM INTERNATIONAL SCHOOL","address":"Bhalaur, Bapoli Rd, Panipat, Haryana 132104, India","phone":"+91 83073 42852","website":"https://gvminternationalschool.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=GVM%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJKdYuW7bRDTkRgjazX9kbKtU"},{"name":"DR International School","address":"6V27+R78, Ganaur Road, Kakoda, Panipat, Haryana 131306, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Kakoda, Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=DR%20International%20School&query_place_id=ChIJWcsud6PBDTkR6nqCAUNkCJk"},{"name":"S L S International School","address":"Hari Nagar, Panipat, Panipat Taraf Ansar, Haryana 132103, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat, Panipat Taraf Ansar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=S%20L%20S%20International%20School&query_place_id=ChIJo51uYNHbDTkRdRXCsP3OyTU"},{"name":"Siddhartha International School Hmesha yaad rahu","address":"7274+88R, NH-1, Samalkha, Panipat, Haryana 132101, India","phone":"+91 90346 60893","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Samalkha, Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Siddhartha%20International%20School%20Hmesha%20yaad%20rahu&query_place_id=ChIJk6SDXvTFDTkR1n8tQpCxrUg"},{"name":"Lakshay International school Naultha Panipat","address":"8V2V+459, Panipat, Haryana 132145, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Lakshay%20International%20school%20Naultha%20Panipat&query_place_id=ChIJwbXcC7nDDTkRskY-rRO8oy4"},{"name":"MAPLE INDO CANADIAN SCHOOL","address":"309-L, near Nikitasha Store, near to chhabra Sweets, Model Town, Panipat, Haryana 132103, India","phone":"+91 90342 27918","website":"","email":"","rating":4.9,"reviews":131,"category":"Preschool","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=MAPLE%20INDO%20CANADIAN%20SCHOOL&query_place_id=ChIJkwIzkFnbDTkRE8Nx4SigtfM"},{"name":"INFINIA WORLD SCHOOL","address":"Block B, TDI city, Panipat, Faridpur, Haryana 132103, India","phone":"+91 91382 22500","website":"https://infiniaschool.com/","email":"","rating":"","reviews":"","category":"International school","city":"Panipat, Faridpur","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=INFINIA%20WORLD%20SCHOOL&query_place_id=ChIJa9oYChva6WwR19Kg3H2VEZ0"},{"name":"Umang Global School - Best C.B.S.E Schools in Panipat","address":"Khanna Rd, Shiv Nagar, Panipat, Haryana 132103, India","phone":"+91 80532 69803","website":"","email":"","rating":"","reviews":"","category":"CBSE school","city":"Panipat","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Umang%20Global%20School%20-%20Best%20C.B.S.E%20Schools%20in%20Panipat&query_place_id=ChIJk8f8G__aDTkR9lOW8Phf9rs"},{"name":"Sancta Maria International School Faridabad","address":"Sector 93, Faridabad, 121002, Delhi, NCR, Faridabad, Haryana 121014, India","phone":"+91 99992 65555","website":"https://sanctamaria.co.in/","email":"","rating":"","reviews":"","category":"International school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Sancta%20Maria%20International%20School%20Faridabad&query_place_id=ChIJ_6IaztjDDDkRp7nC9g54Vx8"},{"name":"Grand Columbus International School and little Columbus","address":"Behind Metro Hospital, Nirman Kunj, ADB PWD Colony, Sector 16A, Faridabad, Haryana 121002, India","phone":"+91 99999 54705","website":"http://www.grandcolumbus.com/","email":"","rating":4.5,"reviews":497,"category":"Education","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Grand%20Columbus%20International%20School%20and%20little%20Columbus&query_place_id=ChIJUxD0UrLdDDkR9-HSwPAMf0c"},{"name":"Aravali International School","address":"Suraj Kund Badkhal Rd, Gadakhor Basti Village, Sector 43, Faridabad, Haryana 121010, India","phone":"+91 98735 67122","website":"https://www.aravali.edu.in/sector43","email":"","rating":"","reviews":"","category":"International school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Aravali%20International%20School&query_place_id=ChIJn9ZlBKvgDDkRBq_D9pBtbrE"},{"name":"SRS International School","address":"Srs Residency Tower-B1, SRS Chowk, B1/1102, SRS Residency, near Srs Residency, RPS City, Sector 88, Faridabad, Haryana 121014, India","phone":"+91 129 407 2888","website":"http://www.srsintlschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=SRS%20International%20School&query_place_id=ChIJFwkfxR7dDDkRjee7rNNj91c"},{"name":"DYNASTY INTERNATIONAL SCHOOL","address":"1748, Rajendra Colony, Sector 28, Faridabad, Haryana 121008, India","phone":"+91 129 404 3701","website":"https://dynastyinternationalschool.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=DYNASTY%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJZa9SfpTdDDkRODp01agoBv8"},{"name":"Manav Rachna International School","address":"715, Chaudhary Charan Singh Marg, Sector 14, Faridabad, Haryana 121007, India","phone":"+91 95600 64222","website":"https://mris.edu.in/faridabad-sector-14/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Manav%20Rachna%20International%20School&query_place_id=ChIJkxfp81XcDDkRVuBkfCoNJmA"},{"name":"Aravali International School Sec-81","address":"BLOCK-D, Sector 81, Faridabad, Haryana 121002, India","phone":"+91 129 298 2081","website":"https://www.aravali.edu.in/sector81","email":"","rating":4.7,"reviews":151,"category":"School","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Aravali%20International%20School%20Sec-81&query_place_id=ChIJ5aclJO7cDDkRxHoJxqC7s2w"},{"name":"EMERALD INTERNATIONAL SCHOOL","address":"Block 10, Block F, Spring Field Colony, Sector 31, Faridabad, Haryana 121003, India","phone":"+91 129 419 8911","website":"http://www.emeraldinternationalschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=EMERALD%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJx2JVLBTnDDkRBkdCgHzDhPs"},{"name":"Rose Valley International School","address":"Sohna Rd, New Industrial Town, Nangla Gujran, Faridabad, Kheri Gujran, Haryana 121004, India","phone":"+91 87449 97676","website":"http://rosevalleyinternationalschool.in/","email":"","rating":"","reviews":"","category":"Private educational institution","city":"Faridabad, Kheri Gujran","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Rose%20Valley%20International%20School&query_place_id=ChIJYeLwMrbeDDkR9gBMUMCpolE"},{"name":"Ryan International School - Sector 21 B - Faridabad, CBSE","address":"opp, Community Centre Rd, Sector 21B, Faridabad, Haryana 121001, India","phone":"+91 129 412 0215","website":"https://www.ryangroup.org/ryaninternational/cbse/faridabad/ryan-international-school-sector-21-b?utm_source=Google&utm_medium=GMB&utm_campaign=Ryan+Group+Faridabad+Sector+21+b","email":"","rating":"","reviews":"","category":"International school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ryan%20International%20School%20-%20Sector%2021%20B%20-%20Faridabad%2C%20CBSE&query_place_id=ChIJ5R-rsrjdDDkRPLb0ECWEq28"},{"name":"Manav Rachna International School","address":"Sector 21C, Faridabad, Haryana 121012, India","phone":"+91 95600 64111","website":"https://mris.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Manav%20Rachna%20International%20School&query_place_id=ChIJ343-oOXdDDkRkftVOCufqsg"},{"name":"The Champs International - Best Primary School in Faridabad","address":"BLOCK-B, opposite House No B626, near Shiv Mandir, Pocket B, Sainik Colony, Sector 49, Faridabad, Haryana 121001, India","phone":"+91 99999 17438","website":"https://thechampsinternational.com/","email":"","rating":"","reviews":"","category":"Primary school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=The%20Champs%20International%20-%20Best%20Primary%20School%20in%20Faridabad&query_place_id=ChIJbavFZYfeDDkRS-QtZM7syt0"},{"name":"Manav Rachna International School","address":"Eros Garden, Manav Rachna Campus Rd, Charmwood Village, Faridabad, Haryana 121009, India","phone":"+91 129 426 9999","website":"https://mris.edu.in/faridabad-charmwood/?utm_source=google%20business&utm_medium=faridabad&utm_campaign=Charmwood","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Manav%20Rachna%20International%20School&query_place_id=ChIJdSU04NTmDDkRPu4qwfvUXgY"},{"name":"Delhi Scholars International School","address":"88, Sector Rd, RPS City, Sector 85, Faridabad, Haryana 121014, India","phone":"+91 85273 60511","website":"https://www.dsisfaridabad.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Delhi%20Scholars%20International%20School&query_place_id=ChIJw8gxgNHdDDkRPdUa_6bQ1VE"},{"name":"V K International Sr.Sec. School","address":"Faridabad, Shiva Colony, Tilapt, Sehatpur, Faridabad, Haryana 121013, India","phone":"+91 99114 18016","website":"http://vkinternationalschool.net/","email":"","rating":"","reviews":"","category":"International school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=V%20K%20International%20Sr.Sec.%20School&query_place_id=ChIJHZu_gHTnDDkRqDbS46LDjhQ"},{"name":"Vrinda International School","address":"C72P+JQ3, Gali No.4, Pocket A, Sanjay Gandhi Memorial Nagar, Sector 48, Faridabad, Haryana 121001, India","phone":"+91 95400 32777","website":"http://vrindainternational.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Vrinda%20International%20School&query_place_id=ChIJ_0gVt8zfDDkRNJ3YBYF4R-o"},{"name":"Govind International School","address":"C7QX+HVG, Mewala Maharajpur Rd, Near Food Manufacturer, HBH Colony, Sector 46, Faridabad, Haryana 121010, India","phone":"+91 88802 87356","website":"","email":"","rating":5,"reviews":1,"category":"Preschool","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Govind%20International%20School&query_place_id=ChIJwf329fDdDDkRIqDGyWByCpk"},{"name":"Millennium World School- Best CBSE School In Faridabad| Best School In Faridabad","address":"B Block, C943+F97 BPTP Parkland, Sector 85, Faridabad, Haryana 121002, India","phone":"+91 95992 86620","website":"http://millenniumworldschool.co.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Millennium%20World%20School-%20Best%20CBSE%20School%20In%20Faridabad%7C%20Best%20School%20In%20Faridabad&query_place_id=ChIJy4eYYFjdDDkRBSCTUxo2_GE"},{"name":"Ankur International School","address":"Swami Dharam Kanta, Gaddha colony, Near, Mawai Rd, Jeevan Nagar, Sector 87, Neharpar Faridabad, Faridabad, Haryana 121002, India","phone":"","website":"","email":"","rating":5,"reviews":2,"category":"School center","city":"Faridabad","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Ankur%20International%20School&query_place_id=ChIJ070r__TdDDkRu_NFUp3ZgoU"},{"name":"Kothari International School","address":"H998+2PH KOTHARI INTERNATIONAL SCHOOL, B-279, B Block, Sector 50, Noida, Uttar Pradesh 201303, India","phone":"+91 120 408 2430","website":"http://www.kotharischool.edu.in/","email":"","rating":4.7,"reviews":1722,"category":"Educational institution","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Kothari%20International%20School&query_place_id=ChIJycsgrpLlDDkRaZCCrKNplhw"},{"name":"Sapphire International School | Top CBSE Schools in Noida | Best CBSE School in Noida","address":"SS-1, Sec.70, Sector 70, Noida, Basi Bahuddin Nagar, Uttar Pradesh 201316, India","phone":"+91 95606 00016","website":"https://sapphireschool.in/noida/home","email":"","rating":"","reviews":"","category":"International school","city":"Noida, Basi Bahuddin Nagar","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Sapphire%20International%20School%20%7C%20Top%20CBSE%20Schools%20in%20Noida%20%7C%20Best%20CBSE%20School%20in%20Noida&query_place_id=ChIJzWDBczjlDDkRjn8FgE9IbzE"},{"name":"Global Indian International School - Best CBSE School in Noida","address":"D-5, opp. Global Indian International School, Sector 71, Noida, Uttar Pradesh 201316, India","phone":"+91 1800 572 2810","website":"https://globalindianschool.org/noida/?utm_source=gmb&utm_medium=organic&utm_campaign=GMB_Traffic","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Global%20Indian%20International%20School%20-%20Best%20CBSE%20School%20in%20Noida&query_place_id=ChIJDeSY7X_vDDkRuKpr2cno1Do"},{"name":"Pathways School Noida","address":"Sector 100, Sector 100, Noida, Uttar Pradesh 201301, India","phone":"+91 120 461 7000","website":"https://www.pathwaysnoida.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Pathways%20School%20Noida&query_place_id=ChIJa9jIKQbmDDkRjKLy_Hm3hH8"},{"name":"Noida International Public school","address":"H9XX+CR6, Garhi Chaukhandi, Sector 121, Noida, Uttar Pradesh 201316, India","phone":"+91 95998 10512","website":"http://nips121.edu.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Noida%20International%20Public%20school&query_place_id=ChIJZbA7s5jvDDkRiqcVxrsWiiQ"},{"name":"Genesis Global School | Best Boarding School in Delhi NCR","address":"A1 & A12, Expressway, Sector 132, Noida, Uttar Pradesh 201304, India","phone":"+91 97110 00498","website":"https://genesisglobalschool.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Genesis%20Global%20School%20%7C%20Best%20Boarding%20School%20in%20Delhi%20NCR&query_place_id=ChIJq6qqFp3oDDkRP9z8-MSjWYo"},{"name":"The Shriram Millennium School - Best International School in Noida - Best IB School in Noida","address":"THE SHRIRAM MILLENNIUM SCHOOL-NOIDA, Plot S-1, off Noida-Greater Noida Expressway, Sector 135, Noida, Uttar Pradesh 201304, India","phone":"+91 99991 76666","website":"https://www.tsms.org.in/noida/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=The%20Shriram%20Millennium%20School%20-%20Best%20International%20School%20in%20Noida%20-%20Best%20IB%20School%20in%20Noida&query_place_id=ChIJxVkhDGHoDDkRA-FFj5fjDfQ"},{"name":"Amity Global School Noida","address":"AMITY GLOBAL SCHOOL, A Block, C Block, Sector 44, Noida, Uttar Pradesh 201301, India","phone":"+91 85278 11336","website":"http://www.amityglobalschoolnoida.com/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Amity%20Global%20School%20Noida&query_place_id=ChIJxwf2kjLkDDkRXcNmZ8TGbjk"},{"name":"Lotus Valley International school","address":"Expressway, Sector 126, Noida, Uttar Pradesh 201313, India","phone":"+91 99109 52225","website":"https://www.lotusvalley.com/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Lotus%20Valley%20International%20school&query_place_id=ChIJ50GxNnfmDDkRjxZ6oOYoyfg"},{"name":"Amity International School","address":"A Block, C Block, Sector 44, Noida, Uttar Pradesh 201313, India","phone":"+91 120 439 9000","website":"https://amityschools.in/noida/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Amity%20International%20School&query_place_id=ChIJSYT7UzLkDDkR_h8rLGKaGYw"},{"name":"Billabong High International School- Best CBSE and IGCSE School | International School | Cambridge Program School in Noida","address":"A-73, Shahid Gulabsingh Lodhi Park Rd, opp. Jasmine Market, Block A, Sector 34, Noida, Uttar Pradesh 201307, India","phone":"+91 120 423 3129","website":"https://www.billabonghighschoolnoida.com/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Billabong%20High%20International%20School-%20Best%20CBSE%20and%20IGCSE%20School%20%7C%20International%20School%20%7C%20Cambridge%20Program%20School%20in%20Noida&query_place_id=ChIJa1VVFZnlDDkR22X4abt1bGE"},{"name":"Cambridge School Noida","address":"CAMBRIDGE SCHOOL, F Block, Pocket F, Sector 27, Noida, Uttar Pradesh 201301, India","phone":"+91 120 431 2985","website":"http://noida.cambridgeschool.edu.in/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Cambridge%20School%20Noida&query_place_id=ChIJEb54Ak3kDDkRonxsYMNlZ0U"},{"name":"Gaurs International School","address":"Plot No GH 03, Sector 16C, Gaur City 2, Greater Noida, Ghaziabad, Uttar Pradesh 201009, India","phone":"+91 85888 63472","website":"http://www.gaursinternationalschool.com/","email":"","rating":"","reviews":"","category":"International school","city":"Greater Noida, Ghaziabad","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Gaurs%20International%20School&query_place_id=ChIJXTkYzcrvDDkR8VDFiis_2gw"},{"name":"KOTHARI INTERNATIONAL SCHOOL","address":"H998+2PH, B-279, B Block, Sector 50, Noida, Uttar Pradesh 201303, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=KOTHARI%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJGRwQQO3lDDkR1rLsYpVvS_Q"},{"name":"The Shriram Millennium School Noida - Junior International Campus - Best International School in Noida","address":"D-108, Block D, Sector 41, Noida, Uttar Pradesh 201303, India","phone":"+91 93556 74141","website":"https://tsms.org.in/noida-sector-41/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=The%20Shriram%20Millennium%20School%20Noida%20-%20Junior%20International%20Campus%20-%20Best%20International%20School%20in%20Noida&query_place_id=ChIJIaWpw23lDDkRaxsf1ubhDU0"},{"name":"STREBEN INTERNATIONAL SCHOOL (Top and Best School in Noida)-Best School in Noida, School in Noida","address":"Rasoolpur Nawada, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309, India","phone":"+91 97178 74979","website":"","email":"","rating":4.9,"reviews":131,"category":"Coaching center","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=STREBEN%20INTERNATIONAL%20SCHOOL%20(Top%20and%20Best%20School%20in%20Noida)-Best%20School%20in%20Noida%2C%20School%20in%20Noida&query_place_id=ChIJSyIl1UXlDDkRx3R-CXf0f8c"},{"name":"Somerville International School","address":"A-07, Noida-Greater Noida Expy, DISTT, Sector - 132, Noida, Uttar Pradesh 201304, India","phone":"+91 80763 06738","website":"http://www.somervilleinternational.in/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Somerville%20International%20School&query_place_id=ChIJBV09BCnmDDkRKkxqS_KrNXY"},{"name":"Manav Rachna International School","address":"D-196, Sector 51, Noida, Uttar Pradesh 201316, India","phone":"+91 85279 16909","website":"https://mris.edu.in/noida-sector-51/","email":"","rating":"","reviews":"","category":"International school","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Manav%20Rachna%20International%20School&query_place_id=ChIJMV4-aojlDDkRUb2jlLV9XYU"},{"name":"KOTHARI INTERNATIONAL SCHOOL","address":"B Block, Sector 50, Noida, Uttar Pradesh 201303, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"Building","city":"Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=KOTHARI%20INTERNATIONAL%20SCHOOL&query_place_id=ChIJjYr_S-3lDDkRS3frywZTVHg"},{"name":"Ascent International School","address":"HS-11B, Block H, Delta II, Greater Noida, Uttar Pradesh 201310, India","phone":"+91 99100 57657","website":"https://www.aisgrnoida.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Greater Noida","state":"Uttar Pradesh","url":"https://www.google.com/maps/search/?api=1&query=Ascent%20International%20School&query_place_id=ChIJ72ldEozqDDkRYe0B4mk9ZQc"},{"name":"St. Joseph's International School, Hisar","address":"St Joseph's International School Rd, Chikanwas, Haryana 125047, India","phone":"+91 92540 44555","website":"http://sjis.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Chikanwas","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=St.%20Joseph's%20International%20School%2C%20Hisar&query_place_id=ChIJK7HsqJHTEzkRkdTyeTPI1Ko"},{"name":"iBird International School - Top and Best Play school in Hisar","address":"iBird International School, Hostel Road, DN College Rd, Aggarwal Colony, Hisar, Haryana 125001, India","phone":"+91 90341 57522","website":"https://www.ibirdschool.in/","email":"","rating":4.8,"reviews":150,"category":"Preschool","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=iBird%20International%20School%20-%20Top%20and%20Best%20Play%20school%20in%20Hisar&query_place_id=ChIJ14MFJtHMEzkRc39e3ErO6cM"},{"name":"Rockford International School Hisar","address":"1906, Sector 16-17, Patel Nagar, Sector 16, Hisar, Haryana 125005, India","phone":"+91 82780 17001","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Rockford%20International%20School%20Hisar&query_place_id=ChIJla8kp0IzEjkRcF4XLbGVVSg"},{"name":"Scottish International School","address":"towards, Delhi - South bye pass, near Aadhar hospital, Sector 16 & 17, Hisar, Haryana 125005, India","phone":"+91 93508 08762","website":"https://www.facebook.com/scottish.hisar","email":"","rating":"","reviews":"","category":"CBSE school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Scottish%20International%20School&query_place_id=ChIJ8zDekvM1EjkR3qaprGYogk0"},{"name":"Scottish International School","address":"Civil Line Police Station Rd, Sector 17, Hisar, Haryana 125005, India","phone":"+91 93155 77788","website":"https://www.facebook.com/scottish.hisar","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Scottish%20International%20School&query_place_id=ChIJTz22xkUzEjkR44ZfHJ3aGlQ"},{"name":"iBird International School","address":"5P56+33X, Horse Breeding Farm Rd, Professor Colony, Hisar, Haryana 125001, India","phone":"+91 90341 57522","website":"https://ibirdschool.in/","email":"","rating":5,"reviews":3,"category":"Montessori preschool","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=iBird%20International%20School&query_place_id=ChIJwf07TirNEzkRUnvTWTn_1-0"},{"name":"Global International School Arya Nagar (Hisar)","address":"4M73+HFX, MDR107, Hisar, Haryana 125004, India","phone":"+91 82229 99892","website":"http://www.globalinternationalschool.in/","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Global%20International%20School%20Arya%20Nagar%20(Hisar)&query_place_id=ChIJf9tjOXDMEzkRV5uRAz9LtSw"},{"name":"Siddharth International School","address":"6.5 Km Stone, Dabra Chowk Rd, Hisar, Haryana 125005, India","phone":"+91 92543 49592","website":"http://siddharthinternationalschool.ac.in/","email":"","rating":"","reviews":"","category":"Higher secondary school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Siddharth%20International%20School&query_place_id=ChIJM3o0u4Q0EjkRQle7hzqI2ns"},{"name":"Doon International School","address":"TOSHAM ROAD, near Dabra Chowk Road, Hisar, Ladwa, Haryana 125005, India","phone":"+91 83739 09277","website":"http://dishisar.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Hisar, Ladwa","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Doon%20International%20School&query_place_id=ChIJ4dIO5GszEjkRYe3YzHu8mq8"},{"name":"Collins International School","address":"4QPR+F3H, Master Colony, सत्रोड़ KHas, Hisar, Satrod Khas, Haryana 125044, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar, Satrod Khas","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Collins%20International%20School&query_place_id=ChIJDwz14CszEjkRiYyXg5zYr6Q"},{"name":"Eklavya International School","address":"4PHJ+96J, Sector 17, Hisar, Haryana 125005, India","phone":"+91 99920 15520","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Eklavya%20International%20School&query_place_id=ChIJp1Im8z4zEjkRiitOygp3cC4"},{"name":"JD Evolution International School","address":"3MCH+JC6, Kamri, Road, Dewan, Hisar, Haryana 125005, India","phone":"","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar, Deva","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=JD%20Evolution%20International%20School&query_place_id=ChIJazrFkxfLEzkRM_b2sv2Kxko"},{"name":"Starkids International Play School (Affiliated)","address":"4PC2+QJG, Main Road, opp. SBI BANK, Azad Nagar, Hisar, Haryana 125007, India","phone":"+91 87081 75674","website":"","email":"","rating":5,"reviews":15,"category":"Preschool","city":"Hisar, Gangwa","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Starkids%20International%20Play%20School%20(Affiliated)&query_place_id=ChIJv9NuTbrMEzkRORsHKNxghLA"},{"name":"Wisdom School","address":"Junior Wing, Sector 13, Hisar, Haryana 125005, India","phone":"+91 94672 93555","website":"http://www.wisdomschoolhisar.com/","email":"","rating":"","reviews":"","category":"ICSE school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Wisdom%20School&query_place_id=ChIJq6qqakAzEjkRzVRzGbGApqI"},{"name":"Springfield School","address":"4PHM+WW2, near Community Center, Sector 16-17, Sector 16, Hisar, Haryana 125005, India","phone":"+91 98960 29073","website":"http://www.springfieldschool.co.in/","email":"","rating":3.9,"reviews":92,"category":"CBSE school","city":"Hisar","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=Springfield%20School&query_place_id=ChIJ53z1w0MzEjkRAHxS_wg9noY"},{"name":"The Anantya School Hisar","address":"14.5 milestone, Hisar -Chandigarh Highway, opposite Toyota showroom, Hisar, Haryana 125005, India","phone":"+91 74969 70707","website":"https://theanantyaschool.com/","email":"","rating":"","reviews":"","category":"CBSE school","city":"Hisar, Dhingtala","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=The%20Anantya%20School%20Hisar&query_place_id=ChIJdVmRJi0tEjkRcyR9dwqAW8M"},{"name":"THE ARYAN SCHOOL","address":"6th K.M.Stone -Kaimri Road, Hisar, Haryana 125005, India","phone":"+91 82220 12015","website":"http://www.thearyanschool.org/","email":"","rating":"","reviews":"","category":"General education school","city":"Hisar, Gangwa","state":"Haryana","url":"https://www.google.com/maps/search/?api=1&query=THE%20ARYAN%20SCHOOL&query_place_id=ChIJNwX7Aak0EjkR35oI_k5YpiA"},{"name":"Royal International School, Kotla Vihar","address":"397, Kotla Vihar Phase 2, Tilangpur Kotla, Delhi, 110043, India","phone":"+91 98991 08506","website":"","email":"","rating":"","reviews":"","category":"General education school","city":"Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Royal%20International%20School%2C%20Kotla%20Vihar&query_place_id=ChIJQ_E-_nAFDTkRE0ZEggfsGH8"},{"name":"Richmondd Global School","address":"M3HM+MXC, N.S. Road, Opp. Inder Enclave, Mianwali Nagar, Paschim Vihar, New Delhi, Delhi 110087, India","phone":"+91 93120 83145","website":"http://www.richmonddglobalschool.edu.in/","email":"","rating":"","reviews":"","category":"CBSE school","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Richmondd%20Global%20School&query_place_id=ChIJrSb9b2sEDTkRR6jzv_48PlA"},{"name":"Brain International School","address":"H3/34, Road No. 235, near Lal Market, Block F, Block H, Vikaspuri, Delhi, 110018, India","phone":"+91 11 4731 3313","website":"http://www.braininternational.org/","email":"","rating":"","reviews":"","category":"International school","city":"Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Brain%20International%20School&query_place_id=ChIJAQAAUPIEDTkRkCv1yII3Zsc"},{"name":"Big Feather International School, Best Pre-School In Shalimar Bagh","address":"BA-37 Ground Floor, Block BB, West Shalimar Bagh, Shalimar Bagh, New Delhi, Delhi, 110088, India","phone":"+91 88516 50183","website":"https://www.bigfeatherinternational.in/","email":"","rating":4.7,"reviews":183,"category":"Preschool","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Big%20Feather%20International%20School%2C%20Best%20Pre-School%20In%20Shalimar%20Bagh&query_place_id=ChIJnYXeldYDDTkRgHv9Nkw74FU"},{"name":"Venkateshwar International School","address":"Sector 10 Dwarka, Dwarka, New Delhi, Delhi, 110075, India","phone":"+91 11 4318 0800","website":"https://www.vis10dwarka.com/","email":"","rating":4.1,"reviews":71,"category":"K-12 school","city":"New Delhi, Delhi","state":"Delhi","url":"https://www.google.com/maps/search/?api=1&query=Venkateshwar%20International%20School&query_place_id=ChIJcR9ogR8bDTkRx9XHPDngiCE"}];
+
+// ═══════ STATE ═══════
+let sortCol = 'index';
+let sortDir = 'asc';
+
+// ═══════ APPROACHED STATUS (localStorage) ═══════
+const STORAGE_KEY = 'shroomy_approached_schools';
+function getApproachedMap() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+}
+function setApproached(schoolKey, val) {
+  const map = getApproachedMap();
+  if (val) map[schoolKey] = true; else delete map[schoolKey];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+}
+function isApproached(s) {
+  return !!getApproachedMap()[getSchoolKey(s)];
+}
+function getSchoolKey(s) {
+  return (s.name + '|' + s.address).replace(/\s+/g, ' ').trim();
+}
+function toggleApproached(schoolKey, btnEl) {
+  const current = getApproachedMap()[schoolKey];
+  setApproached(schoolKey, !current);
+  // Re-render to update UI
+  applyFilters();
+  updateStats(filteredData);
+}
+let filteredData = [...DATA];
+
+// ═══════ HELPERS ═══════
+function getCityGroup(school) {
+  const addr = (school.address || '').toLowerCase();
+  const city = (school.city || '').toLowerCase();
+  const combined = addr + ' ' + city;
+
+  if (combined.includes('delhi') || combined.includes('new delhi')) return 'Delhi';
+  if (combined.includes('gurugram') || combined.includes('gurgaon')) return 'Gurugram';
+  if (combined.includes('faridabad')) return 'Faridabad';
+  if (combined.includes('noida') || combined.includes('greater noida')) return 'Noida / NCR';
+  if (combined.includes('sonipat')) return 'Sonipat';
+  if (combined.includes('panipat')) return 'Panipat';
+  if (combined.includes('karnal')) return 'Karnal';
+  if (combined.includes('ambala')) return 'Ambala';
+  if (combined.includes('hisar')) return 'Hisar';
+  if (combined.includes('rohtak')) return 'Rohtak';
+  if (combined.includes('panchkula')) return 'Panchkula';
+  if (combined.includes('haryana')) return 'Other Haryana';
+  return 'Other';
+}
+
+function getWhatsAppLink(phone) {
+  if (!phone) return null;
+  const digits = phone.replace(/[^0-9]/g, '');
+  const num = digits.startsWith('91') ? digits : '91' + digits;
+  const msg = encodeURIComponent(
+    `Hello! I'm reaching out from Shroomy Delights Agrotech. We offer educational farm visit experiences for school students. Would you be interested in learning more? Visit us: https://shroomydelightsagrotech.com/`
+  );
+  return `https://wa.me/${num}?text=${msg}`;
+}
+
+function cleanDomain(url) {
+  if (!url) return '';
+  try {
+    const u = new URL(url);
+    return u.hostname.replace('www.', '');
+  } catch { return url.substring(0, 30); }
+}
+
+function renderStars(rating) {
+  if (!rating) return '';
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.3;
+  let s = '';
+  for (let i = 0; i < full; i++) s += '★';
+  if (half) s += '½';
+  return s;
+}
+
+// ═══════ INIT REGIONS ═══════
+function initRegions() {
+  const regions = new Set();
+  DATA.forEach(s => regions.add(getCityGroup(s)));
+  const sel = document.getElementById('regionFilter');
+  [...regions].sort().forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    sel.appendChild(opt);
+  });
+}
+
+// ═══════ STATS ═══════
+function updateStats(data) {
+  const total = data.length;
+  const withPhone = data.filter(s => s.phone).length;
+  const withWeb = data.filter(s => s.website).length;
+  const withRating = data.filter(s => s.rating).length;
+  const regions = new Set(data.map(getCityGroup)).size;
+
+  const approached = data.filter(s => isApproached(s)).length;
+  const notApproached = total - approached;
+
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-green)"></div><span class="stat-value">${total}</span> Schools</div>
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-emerald)"></div><span class="stat-value">${withPhone}</span> Phone Numbers</div>
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-cyan)"></div><span class="stat-value">${withWeb}</span> Websites</div>
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-amber)"></div><span class="stat-value">${withRating}</span> Rated</div>
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-purple)"></div><span class="stat-value">${regions}</span> Regions</div>
+    <div class="stat-chip"><div class="dot" style="background:#34d399"></div><span class="stat-value">${approached}</span> Approached</div>
+    <div class="stat-chip"><div class="dot" style="background:var(--accent-rose)"></div><span class="stat-value">${notApproached}</span> Pending</div>
+  `;
+}
+
+// ═══════ RENDER ═══════
+function render(data) {
+  const tbody = document.getElementById('tableBody');
+  const empty = document.getElementById('emptyState');
+
+  if (data.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    document.getElementById('resultCount').innerHTML = `<strong>0</strong> results`;
+    return;
+  }
+
+  empty.style.display = 'none';
+  document.getElementById('resultCount').innerHTML = `<strong>${data.length}</strong> of ${DATA.length}`;
+
+  tbody.innerHTML = data.map((s, i) => {
+    const cityGroup = getCityGroup(s);
+    const cityClass = cityGroup === 'Delhi' ? 'delhi' : (cityGroup === 'Noida / NCR' ? 'noida' : '');
+    const waLink = getWhatsAppLink(s.phone);
+    const displayCity = s.city || cityGroup;
+    const sKey = getSchoolKey(s);
+    const approached = isApproached(s);
+    const statusClass = approached ? 'approached' : 'not-approached';
+    const statusLabel = approached ? '✅ Approached' : '🔴 Not Yet';
+    const rowClass = approached ? 'row-approached' : '';
+
+    return `<tr class="${rowClass}" style="animation-delay:${Math.min(i * 0.02, 0.5)}s">
+      <td class="col-sr">${i + 1}</td>
+      <td class="col-name">${escHtml(s.name)}</td>
+      <td class="col-city"><span class="city-badge ${cityClass}">${escHtml(displayCity || cityGroup)}</span></td>
+      <td class="col-address">${escHtml(s.address)}</td>
+      <td class="col-phone">${s.phone
+        ? `<a class="phone-link" href="tel:${s.phone}" title="Call">📞 ${escHtml(s.phone)}</a>`
+        : `<span class="no-data">—</span>`
+      }</td>
+      <td>${s.website
+        ? `<a class="web-link" href="${escHtml(s.website)}" target="_blank" title="${escHtml(s.website)}">🌐 ${escHtml(cleanDomain(s.website))}</a>`
+        : `<span class="no-data">—</span>`
+      }</td>
+      <td class="col-rating">${s.rating
+        ? `<div class="rating-display">
+            <span class="rating-num">${s.rating}</span>
+            <span class="stars">${renderStars(s.rating)}</span>
+            ${s.reviews ? `<span class="review-count">(${s.reviews})</span>` : ''}
+          </div>`
+        : `<span class="no-data">—</span>`
+      }</td>
+      <td class="col-category">${s.category ? `<span class="category-tag">${escHtml(s.category)}</span>` : `<span class="no-data">—</span>`}</td>
+      <td>
+        <button class="status-toggle ${statusClass}" onclick="toggleApproached('${sKey.replace(/'/g, "\\'")}')"
+          title="Click to toggle status">${statusLabel}</button>
+      </td>
+      <td class="col-actions">
+        <div class="action-btns">
+          ${waLink ? `<a class="action-btn action-whatsapp" href="${waLink}" target="_blank" title="Message on WhatsApp">💬 WhatsApp</a>` : ''}
+          ${s.url ? `<a class="action-btn maps-link" href="${escHtml(s.url)}" target="_blank">📍 Maps</a>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ═══════ FILTER + SORT ═══════
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const region = document.getElementById('regionFilter').value;
+  const contact = document.getElementById('contactFilter').value;
+  const rating = document.getElementById('ratingFilter').value;
+  const status = document.getElementById('statusFilter').value;
+
+  filteredData = DATA.filter(s => {
+    // Search
+    if (q) {
+      const hay = `${s.name} ${s.address} ${s.phone} ${s.city} ${s.website} ${s.category}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    // Region
+    if (region && getCityGroup(s) !== region) return false;
+    // Contact
+    if (contact === 'phone' && !s.phone) return false;
+    if (contact === 'website' && !s.website) return false;
+    if (contact === 'both' && (!s.phone || !s.website)) return false;
+    if (contact === 'none' && (s.phone || s.website)) return false;
+    // Rating
+    if (rating === 'rated' && !s.rating) return false;
+    if (rating && rating !== 'rated' && (!s.rating || s.rating < parseFloat(rating))) return false;
+    // Status
+    if (status === 'approached' && !isApproached(s)) return false;
+    if (status === 'not-approached' && isApproached(s)) return false;
+
+    return true;
+  });
+
+  applySort();
+}
+
+function applySort() {
+  filteredData.sort((a, b) => {
+    let va, vb;
+    switch (sortCol) {
+      case 'name': va = a.name || ''; vb = b.name || ''; break;
+      case 'city': va = getCityGroup(a); vb = getCityGroup(b); break;
+      case 'address': va = a.address || ''; vb = b.address || ''; break;
+      case 'phone': va = a.phone || ''; vb = b.phone || ''; break;
+      case 'website': va = a.website || ''; vb = b.website || ''; break;
+      case 'rating': va = a.rating || 0; vb = b.rating || 0; break;
+      case 'category': va = a.category || ''; vb = b.category || ''; break;
+      default: va = DATA.indexOf(a); vb = DATA.indexOf(b);
+    }
+    if (typeof va === 'string') {
+      const cmp = va.localeCompare(vb);
+      return sortDir === 'asc' ? cmp : -cmp;
+    }
+    return sortDir === 'asc' ? va - vb : vb - va;
+  });
+
+  updateStats(filteredData);
+  render(filteredData);
+
+  // Update header styles
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.sort === sortCol);
+    const icon = th.querySelector('.sort-icon');
+    if (icon) icon.textContent = (th.dataset.sort === sortCol && sortDir === 'desc') ? '▲' : '▼';
+  });
+}
+
+// ═══════ EXPORT ═══════
+function exportCSV() {
+  const headers = ['Sr No', 'School Name', 'City/Region', 'Address', 'Phone', 'Website', 'Rating', 'Reviews', 'Category', 'Status', 'Google Maps URL', 'WhatsApp Link'];
+  const rows = filteredData.map((s, i) => [
+    i + 1,
+    `"${(s.name||'').replace(/"/g,'""')}"`,
+    `"${getCityGroup(s)}"`,
+    `"${(s.address||'').replace(/"/g,'""')}"`,
+    `"${s.phone||''}"`,
+    `"${s.website||''}"`,
+    s.rating || '',
+    s.reviews || '',
+    `"${s.category||''}"`,
+    `"${isApproached(s) ? 'Approached' : 'Not Approached'}"`,
+    `"${s.url||''}"`,
+    `"${getWhatsAppLink(s.phone) || ''}"`,
+  ].join(','));
+
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `shroomy_school_outreach_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ CSV exported successfully!');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════ EVENT LISTENERS ═══════
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('regionFilter').addEventListener('change', applyFilters);
+document.getElementById('contactFilter').addEventListener('change', applyFilters);
+document.getElementById('ratingFilter').addEventListener('change', applyFilters);
+document.getElementById('statusFilter').addEventListener('change', applyFilters);
+
+document.querySelectorAll('thead th[data-sort]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.sort;
+    if (sortCol === col) {
+      sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortCol = col;
+      sortDir = 'asc';
+    }
+    applySort();
+  });
+});
+
+// Keyboard shortcut
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+});
+
+// ═══════ INIT ═══════
+initRegions();
+updateStats(DATA);
+render(DATA);
+</script>
+</body>
+</html>
